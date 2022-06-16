@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getPokemon, getPokemonInfo } from '../../api'
 import { Card } from '../../components/Card'
+import { SearchBar } from '../../components/SearchBar'
 
 import './styles.css'
 
@@ -9,6 +10,7 @@ export function Home() {
 
   const [pokemon, setPokemon] = useState([])
   const [page, setPage] = useState(0)
+  const [searching, setSearching] = useState('')
 
   function getPokemonImages(pokemonList) {
     return pokemonList.map((pokemon) => {
@@ -19,26 +21,37 @@ export function Home() {
   }
 
 
-  async function listPokemon() {
-    const results = await getPokemon('https://pokeapi.co/api/v2/pokemon', page * 50, 50)
-    const promiseList = results.map(async (result) => {
+  async function listPokemon(search) {
+    let results
+    search != '' ? { async () {
+        const promise = await getPokemon('https://pokeapi.co/api/v2/pokemon')
+        results = promise.filter((pokemon) => { return pokemon.name.includes(search) })
+      }
+    } : {
+      results = await getPokemon('https://pokeapi.co/api/v2/pokemon', page * 50, 50)
+    }
+      const promiseList = results.map(async (result) => {
       return await getPokemonInfo(result.url)
     })
     const pokemonList = await Promise.all(promiseList)
     const pokemonListWithImage = getPokemonImages(pokemonList)
-    
     setPokemon(pokemonListWithImage)
   }
 
+  function handleSearch(search) {
+    setSearching(search)
+  }
+
   useEffect(() => {
-    listPokemon()
-  }, [page])
+    listPokemon(searching)
+  }, [page, searching])
 
 
 
 
   return (
     <>
+      <input onChange={e =>  handleSearch(e.target.value)}/>
       <div className="pokedex">
         {pokemon.map((pokemon) => {
           return (
@@ -46,19 +59,21 @@ export function Home() {
           )
         })}
       </div>
+
       <div>
         <span>Page: {page + 1}</span>
+
         {page != 0 && (
           <button onClick={() => setPage(page - 1) }>
           Previous Page
           </button>
+
         )}
-        {page !=17 && (
+        {page != 17 && (
           <button onClick={() => setPage(page + 1)}>
           Next Page
           </button>
         )}
-        
       </div>
     </>
   )
