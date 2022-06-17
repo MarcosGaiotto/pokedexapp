@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getPokemon, getPokemonInfo } from '../../api'
+import { getPokemon, getPokemonInfo, searchPokemon } from '../../api'
 import { Card } from '../../components/Card'
-import { SearchBar } from '../../components/SearchBar'
 
 import './styles.css'
 
@@ -10,7 +9,6 @@ export function Home() {
 
   const [pokemon, setPokemon] = useState([])
   const [page, setPage] = useState(0)
-  const [searching, setSearching] = useState('')
 
   function getPokemonImages(pokemonList) {
     return pokemonList.map((pokemon) => {
@@ -21,16 +19,10 @@ export function Home() {
   }
 
 
-  async function listPokemon(search) {
-    let results
-    search != '' ? { async () {
-        const promise = await getPokemon('https://pokeapi.co/api/v2/pokemon')
-        results = promise.filter((pokemon) => { return pokemon.name.includes(search) })
-      }
-    } : {
-      results = await getPokemon('https://pokeapi.co/api/v2/pokemon', page * 50, 50)
-    }
-      const promiseList = results.map(async (result) => {
+  async function listPokemon() {
+    const results = await getPokemon('https://pokeapi.co/api/v2/pokemon', page * 50, 50)
+    console.log(results)
+    const promiseList = results.map(async (result) => {
       return await getPokemonInfo(result.url)
     })
     const pokemonList = await Promise.all(promiseList)
@@ -38,24 +30,33 @@ export function Home() {
     setPokemon(pokemonListWithImage)
   }
 
-  function handleSearch(search) {
-    setSearching(search)
+  async function searchPokemonList(search) {
+    const results = await searchPokemon('https://pokeapi.co/api/v2/pokemon', search)
+    console.log(results)
+    const promiseList = results.slice(0,50).map(async (result) => {
+      return await getPokemonInfo(result.url)
+    })
+    const pokemonList = await Promise.all(promiseList)
+    const pokemonListWithImage = getPokemonImages(pokemonList)
+    setPokemon(pokemonListWithImage)
   }
 
+
+
   useEffect(() => {
-    listPokemon(searching)
-  }, [page, searching])
+    listPokemon()
+  }, [page])
 
 
 
 
   return (
     <>
-      <input onChange={e =>  handleSearch(e.target.value)}/>
+      <input onChange={e =>  searchPokemonList(e.target.value)}/>
       <div className="pokedex">
         {pokemon.map((pokemon) => {
           return (
-            <Card name={pokemon.name} img={pokemon.image} />
+            <Card key={pokemon.id} name={pokemon.name} img={pokemon.image} />
           )
         })}
       </div>
