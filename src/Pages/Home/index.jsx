@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getPokemon, getPokemonInfo, searchPokemon } from '../../api'
 import { Card } from '../../components/Card'
+import { SearchBar } from '../../components/SearchBar'
 
 import './styles.css'
 
@@ -20,8 +21,7 @@ export function Home() {
 
 
   async function listPokemon() {
-    const results = await getPokemon('https://pokeapi.co/api/v2/pokemon', page * 50, 50)
-    console.log(results)
+    const results = await getPokemon('https://pokeapi.co/api/v2/pokemon', page * 48, 48)
     const promiseList = results.map(async (result) => {
       return await getPokemonInfo(result.url)
     })
@@ -32,8 +32,7 @@ export function Home() {
 
   async function searchPokemonList(search) {
     const results = await searchPokemon('https://pokeapi.co/api/v2/pokemon', search)
-    console.log(results)
-    const promiseList = results.slice(0,50).map(async (result) => {
+    const promiseList = results.slice(0,48).map(async (result) => {
       return await getPokemonInfo(result.url)
     })
     const pokemonList = await Promise.all(promiseList)
@@ -51,31 +50,39 @@ export function Home() {
 
 
   return (
-    <>
-      <input onChange={e =>  searchPokemonList(e.target.value)}/>
+    <div className="main">
+      <div className="head">
+        <div className="logo">
+          <img src="src/images/pokedex.png" alt="Pokédex" />
+        </div>
+        <SearchBar searchPokemon={searchPokemonList}/>
+      </div>
+      
+
       <div className="pokedex">
         {pokemon.map((pokemon) => {
           return (
-            <Card key={pokemon.id} name={pokemon.name} img={pokemon.image} />
+            <Card key={pokemon.id} id={pokemon.id} name={pokemon.name} img={pokemon.image} bg={pokemon.types[0].type.name}/>
           )
         })}
       </div>
 
-      <div>
+      <div className="page-info">
         <span>Page: {page + 1}</span>
+        <div className="page-controls">
+          {page != 0 && (
+            <button onClick={() => setPage(page - 1) }>
+            Previous
+            </button>
 
-        {page != 0 && (
-          <button onClick={() => setPage(page - 1) }>
-          Previous Page
-          </button>
-
-        )}
-        {page != 17 && (
-          <button onClick={() => setPage(page + 1)}>
-          Next Page
-          </button>
-        )}
+          )}
+          {page != 17 && (
+            <button onClick={() => setPage(page + 1)}>
+            Next
+            </button>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   )
 }

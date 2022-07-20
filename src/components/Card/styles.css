@@ -1,15 +1,120 @@
+:root {
+    --normal: url(../../images/normal_bg.jpg);
+    --fire: url(../../images/fire_bg.jpg);
+    --grass: url(../../images/grass_bg.jpg);
+    --bug: url(../../images/bug_bg.jpg);
+    --dark: url(../../images/dark_bg.jpg);
+    --dragon: url(../../images/dragon_bg.jpg);
+    --electric: url(../../images/electric_bg.jpg);
+    --fairy: url(../../images/fairy_bg.jpg);
+    --fighting: url(../../images/fighting_bg.jpg);
+    --flying: url(../../images/flying_bg.jpg);
+    --ghost: url(../../images/ghost_bg.jpg);
+    --ground: url(../../images/ground_bg.jpg);
+    --ice: url(../../images/ice_bg.jpg);
+    --poison: url(../../images/poison_bg.jpg);
+    --psychic: url(../../images/psychic_bg.jpg);
+    --rock: url(../../images/rock_bg.jpg);
+    --steel: url(../../images/steel_bg.jpg);
+    --water: url(../../images/water_bg.jpg);
+}
+
 .card {
-    width: 15rem;
-    height: 4rem;
-    background-color: #460e0e;
+    width: 9rem;
+    height: 11rem;
     color: #fff;
     margin: 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    background-size: cover;
+    gap: 2rem;
+    border-radius: .5rem;
+    box-shadow: black .1rem .1rem;
 }
 
 .card>img {
-    max-width: 2rem;
+    max-width: 4rem;
+}
+
+.card>span {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 1rem;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+.normal {
+    background-image: var(--normal); 
+}
+
+.fire {
+    background-image: var(--fire);
+}
+
+.grass {
+    background-image: var(--grass);
+}
+
+.bug {
+    background-image: var(--bug);
+}
+
+.dark {
+    background-image: var(--dark);
+}
+
+.dragon {
+    background-image: var(--dragon);
+}
+
+.electric {
+    background-image: var(--electric);
+}
+
+.fairy {
+    background-image: var(--fairy);
+}
+
+.fighting {
+    background-image: var(--fighting);
+}
+
+.flying {
+    background-image: var(--flying);
+}
+
+.ghost {
+    background-image: var(--ghost);
+}
+
+.ground {
+    background-image: var(--ground);
+}
+
+.ice {
+    background-image: var(--ice);
+}
+
+.poison {
+    background-image: var(--poison);
+}
+
+.psychic {
+    background-image: var(--psychic);
+}
+
+.rock {
+    background-image: var(--rock);
+}
+
+.steel {
+    background-image: var(--steel);
+}
+
+.water {
+    background-image: var(--water);
 }

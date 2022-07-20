@@ -1,0 +1,11 @@
+.search-bar {
+    margin-top: 1.5rem;
+}
+.search-bar>input {
+    width: 16rem;
+    height: 2.5rem;
+    font-size: 1.4rem;
+    padding-left: .5rem;
+    border-radius: 1.2rem;
+    font-family: Roboto, sans-serif;
+}
