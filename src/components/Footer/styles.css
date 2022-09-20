@@ -1,0 +1,123 @@
+.page-info {
+    width: 100%;
+    height: 15%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 2rem;
+    font-family: Roboto, sans-serif;
+    background-color: #fff;
+    border-top: 1rem solid #000;
+    position: relative;
+}
+
+.page-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.page-controls>button {
+    width: 6rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-family: Roboto, sans-serif;
+    border-radius: 1rem;
+    background-color: #F04732;
+    color: #fff;
+    border-color: #000;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.page-controls>button:hover {
+    background-color: #df4835;
+}
+
+.page-controls>button:active {
+    background-color: #be2d19;
+}
+
+.previous, .next {
+    width: 12rem;
+    height: 4rem;
+    text-decoration: none;
+    color: #000;
+    font-size: 1.3rem;
+    font-family: Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.switchImg {
+    width: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .page-info {
+        justify-content: space-between;
+        font-size: 3rem;
+        padding: 4rem;
+    }
+
+    .page-controls>button {
+        width: 9rem;
+        height: 4rem;
+        font-size: 2rem;
+    }
+
+    .previous, .next {
+        width: 12rem;
+        height: 12rem;
+        font-size: 2.5rem;
+    }
+
+    .switchImg {
+        width: 4.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .page-info {
+        font-size: 2rem;
+        padding: 3rem;
+    }
+
+    .page-controls {
+        gap: 3rem;
+    }
+
+    .page-controls>button {
+        width: 7rem;
+        height: 3rem;
+        font-size: 1.5rem;
+    }
+
+    .previous, .next {
+        width: 6rem;
+        height: 6rem;
+        font-size: 1.5rem;
+    }
+
+    .switchImg {
+        width: 3rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .page-info {
+        height: 15%;
+        padding: 2.5rem;
+    }
+
+    .previous, .next {
+        width: 8rem;
+        height: 8rem;
+        font-size: 1.5rem;
+    }
+
+    .switchImg {
+        width: 4rem;
+    }
+}

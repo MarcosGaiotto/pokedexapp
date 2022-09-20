@@ -1,0 +1,132 @@
+header {
+    width: 100%;
+    height: 25%;
+    background-color: #F04732;
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .5rem;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1.4rem;
+    width: 100%;
+    height: 1.5rem;
+    background-color: #000;
+}
+
+.header-circle {
+    content: "";
+    position: absolute;
+    bottom: -3.5rem;
+    left: calc(50% - 2.5rem);
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: #000;
+}
+
+.header-circle::before {
+    content: "";
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.header-circle::after {
+    content: "";
+    position: absolute;
+    top: 23%;
+    left: 23%;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 6px solid #000;
+}
+
+.logo>img {
+    width: 10rem;
+}
+
+
+@media (min-width: 425px) {
+    .logo>img {
+        width: 12rem;
+    }
+}
+
+@media (min-width: 768px) {
+    header {
+        height: 20%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2rem;
+    }
+
+    .logo>img {
+        width: 14rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    header::before {
+        height: 2rem;
+    }
+
+    .header-circle {
+        bottom: -3.5rem;
+        left: calc(50% - 3rem);
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .header-circle::before {
+        top: 17%;
+        left: 17%;
+        width: 4rem;
+        height: 4rem;
+    }
+    
+    .header-circle::after {
+        top: 23%;
+        left: 23%;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .header-circle {
+        bottom: -4rem;
+        left: calc(50% - 4rem);
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .header-circle::before {
+        top: 12.5%;
+        left: 12.5%;
+        width: 6rem;
+        height: 6rem;
+    }
+    
+    .header-circle::after {
+        top: 20%;
+        left: 20%;
+        width: 4rem;
+        height: 4rem;
+    }
+}

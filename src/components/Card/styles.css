@@ -19,34 +19,6 @@
     --water: url(../../images/water_bg.jpg);
 }
 
-.card {
-    width: 9rem;
-    height: 11rem;
-    color: #fff;
-    margin: 1rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    background-size: cover;
-    gap: 2rem;
-    border-radius: .5rem;
-    box-shadow: black .1rem .1rem;
-}
-
-.card>img {
-    max-width: 4rem;
-}
-
-.card>span {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    text-align: center;
-    font-size: 1rem;
-    border-bottom-left-radius: .5rem;
-    border-bottom-right-radius: .5rem;
-}
-
 .normal {
     background-image: var(--normal); 
 }
@@ -118,3 +90,81 @@
 .water {
     background-image: var(--water);
 }
+
+.card {
+    width: 10rem;
+    height: 12rem;
+    color: #fff;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background-size: cover;
+    gap: 2rem;
+    border-radius: .5rem;
+    box-shadow: #0E0E0E .3rem .2rem;
+}
+
+.card>img {
+    width: 5rem;
+}
+
+.card>span {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 1.2rem;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+@media (min-width: 425px) {
+    .card {
+        width: 12rem;
+        height: 14rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card {
+        width: 8rem;
+        height: 10rem;     
+    }
+    
+    .card>img {
+        max-width: 3rem;
+    }
+    
+    .card>span {
+        font-size: 1rem;
+    }
+}
+
+/* .card {
+    width: 9rem;
+    height: 11rem;
+    color: #fff;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background-size: cover;
+    gap: 2rem;
+    border-radius: .5rem;
+    box-shadow: black .1rem .1rem;
+}
+
+.card>img {
+    max-width: 4rem;
+}
+
+.card>span {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 1rem;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+} */

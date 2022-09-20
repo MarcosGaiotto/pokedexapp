@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { getPokemon, getPokemonInfo, searchPokemon } from '../../api'
 import { Card } from '../../components/Card'
+import { Header } from '../../components/Header'
 import { SearchBar } from '../../components/SearchBar'
+import { Footer } from '../../components/Footer'
 
 import './styles.css'
 
@@ -21,7 +24,7 @@ export function Home() {
 
 
   async function listPokemon() {
-    const results = await getPokemon('https://pokeapi.co/api/v2/pokemon', page * 48, 48)
+    const results = await getPokemon('https://pokeapi.co/api/v2/pokemon', page * 49, 49)
     const promiseList = results.map(async (result) => {
       return await getPokemonInfo(result.url)
     })
@@ -32,7 +35,7 @@ export function Home() {
 
   async function searchPokemonList(search) {
     const results = await searchPokemon('https://pokeapi.co/api/v2/pokemon', search)
-    const promiseList = results.slice(0,48).map(async (result) => {
+    const promiseList = results.slice(0,49).map(async (result) => {
       return await getPokemonInfo(result.url)
     })
     const pokemonList = await Promise.all(promiseList)
@@ -48,26 +51,22 @@ export function Home() {
 
 
 
-
   return (
-    <div className="main">
-      <div className="head">
-        <div className="logo">
-          <img src="src/images/pokedex.png" alt="Pokédex" />
-        </div>
+    <div className="app">
+    
+      <Header>
         <SearchBar searchPokemon={searchPokemonList}/>
-      </div>
-      
+      </Header>
 
-      <div className="pokedex">
+      <main className="pokedex">
         {pokemon.map((pokemon) => {
           return (
-            <Card key={pokemon.id} id={pokemon.id} name={pokemon.name} img={pokemon.image} bg={pokemon.types[0].type.name}/>
+            <Link className="link" to={`/pokemon/${pokemon.id}`} key={pokemon.id}><Card id={pokemon.id} name={pokemon.name} img={pokemon.image} bg={pokemon.types[0].type.name}/></Link>
           )
         })}
-      </div>
+      </main>
 
-      <div className="page-info">
+      <Footer>
         <span>Page: {page + 1}</span>
         <div className="page-controls">
           {page != 0 && (
@@ -82,7 +81,7 @@ export function Home() {
             </button>
           )}
         </div>
-      </div>
+      </Footer>
     </div>
   )
 }
